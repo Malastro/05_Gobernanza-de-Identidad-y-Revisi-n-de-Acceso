@@ -20,3 +20,4 @@ Objetivos técnicos
 - Generar informes CSV que permitan comparar el estado inicial y el resultado de la revisión.
 - Documentar las pruebas, las limitaciones y las medidas de seguridad del proceso.
 
+### 2. 
