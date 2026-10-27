@@ -1,4 +1,4 @@
-# 05_Gobernanza-de-Identidad-y-Revisi-n-de-Acceso
+# 05_Gobernanza de Identidad y Revisión de Acceso
 
 ### 1. Descripción del proyecto
 
