@@ -144,7 +144,55 @@ Los informes generados son:
 - `accesos_cuentas_inactivas.csv`
 - `resumen_auditoria.csv`
 
-## 5. Resultados de la ejecución
+## 5. Automatización de la auditoría con PowerShell
+
+Se desarrolló el script `scripts/Auditoria-Accesos.ps1` para automatizar la revisión de asignaciones de acceso a partir de tres archivos CSV: el inventario de usuarios, las asignaciones actuales y la matriz de accesos esperados.
+
+El script realiza las siguientes operaciones:
+
+- Importación de los datos de entrada.
+- Validación de usuarios inexistentes y detección de registros duplicados.
+- Comparación de las asignaciones actuales con los accesos esperados.
+- Detección de asignaciones vinculadas a cuentas inactivas.
+- Clasificación de los hallazgos y generación de recomendaciones.
+- Exportación de informes CSV y un informe resumen en Markdown.
+
+### Informes generados
+
+| Archivo | Descripción |
+|---|---|
+| `reports/accesos_no_esperados.csv` | Asignaciones fuera de la matriz de accesos esperados, con criticidad y recomendación |
+| `reports/accesos_cuentas_inactivas.csv` | Asignaciones asociadas a cuentas inactivas |
+| `reports/resumen_auditoria.csv` | Indicadores generales de la auditoría |
+| `reports/informe_auditoria.md` | Informe legible con resultados, hallazgos y recomendaciones |
+
+### Resultados de la ejecución
+
+| Indicador | Resultado |
+|---|---:|
+| Usuarios inventariados | 14 |
+| Asignaciones revisadas | 24 |
+| Accesos esperados definidos | 14 |
+| Asignaciones no esperadas | 10 |
+| Asignaciones asociadas a cuentas inactivas | 2 |
+| Usuarios inexistentes en las asignaciones | 0 |
+| Asignaciones duplicadas | 0 |
+
+### Ejecución
+
+Desde la carpeta raíz del laboratorio, ejecutar:
+
+```powershell
+.\scripts\Auditoria-Accesos.ps1
+```
+
+El script lee los datos de `data/` y genera o actualiza los informes de `reports/`. No modifica cuentas ni permisos.
+
+### Alcance y limitaciones
+
+Este laboratorio utiliza datos ficticios y simula una revisión de accesos mediante una matriz de referencia. Los accesos detectados requieren validación antes de decidir si deben retirarse. La clasificación de criticidad es una regla didáctica del proyecto y no sustituye una evaluación de riesgos basada en el contexto de la organización.
+
+## 6. Resultados de la ejecución
 
 | Indicador                         | Resultado |
 | --------------------------------- | --------: |
@@ -163,7 +211,7 @@ Estos resultados representan **hallazgos potenciales**, no confirmaciones autom�
 
 Los resultados se guardan en la carpeta `reports/`.
 
-## 6. Seguridad, alcance y limitaciones
+## 7. Seguridad, alcance y limitaciones
 
 Este proyecto es una simulación local de procesos de Identity Governance.
 
@@ -176,7 +224,7 @@ Este proyecto es una simulación local de procesos de Identity Governance.
 
 Estas limitaciones son intencionadas: primero se construye un proceso de auditoría reproducible y no destructivo; después se pueden incorporar decisiones de revisión y simulaciones de remediación.
 
-## 7. Próximas mejoras
+## 8. Próximas mejoras
 
 Las siguientes fases previstas son:
 
