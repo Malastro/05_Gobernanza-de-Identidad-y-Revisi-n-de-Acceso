@@ -166,6 +166,12 @@ El script realiza las siguientes operaciones:
 | `reports/resumen_auditoria.csv` | Indicadores generales de la auditoría |
 | `reports/informe_auditoria.md` | Informe legible con resultados, hallazgos y recomendaciones |
 
+**Informe consolidado**
+
+Además de los informes CSV, el proceso genera un informe en Markdown que reúne los resultados de la auditoría y facilita la consulta de los principales hallazgos.
+
+![Informe final de auditoría](03_informeFinal.png)
+
 ### Resultados de la ejecución
 
 | Indicador | Resultado |
@@ -178,6 +184,12 @@ El script realiza las siguientes operaciones:
 | Usuarios inexistentes en las asignaciones | 0 |
 | Asignaciones duplicadas | 0 |
 
+### Hallazgos detectados
+
+La auditoría identificó asignaciones que no figuran en la matriz de accesos esperados. Los resultados incluyen la criticidad asignada y recomendaciones para orientar su revisión.
+
+![Hallazgos clasificados por criticidad](02_hallazgos_clasificados.png)
+
 ### Ejecución
 
 Desde la carpeta raíz del laboratorio, ejecutar:
@@ -188,20 +200,15 @@ Desde la carpeta raíz del laboratorio, ejecutar:
 
 El script lee los datos de `data/` y genera o actualiza los informes de `reports/`. No modifica cuentas ni permisos.
 
+
+![Ejecución de la auditoría](01_exeAuditoria.png)
+
+
 ### Alcance y limitaciones
 
 Este laboratorio utiliza datos ficticios y simula una revisión de accesos mediante una matriz de referencia. Los accesos detectados requieren validación antes de decidir si deben retirarse. La clasificación de criticidad es una regla didáctica del proyecto y no sustituye una evaluación de riesgos basada en el contexto de la organización.
 
-## 6. Resultados de la ejecución
-
-| Indicador                         | Resultado |
-| --------------------------------- | --------: |
-| Usuarios inventariados            |        14 |
-| Asignaciones actuales revisadas   |        24 |
-| Accesos no esperados detectados   |        10 |
-| Asignaciones de cuentas inactivas |         2 |
-
-### Interpretación
+## 6. Interpretación de los Resultados
 
 La auditoría identificó diez asignaciones que no figuran en la matriz de accesos esperados y dos asignaciones asociadas a una cuenta inactiva.
 
@@ -226,12 +233,13 @@ Estas limitaciones son intencionadas: primero se construye un proceso de auditor
 
 ## 8. Próximas mejoras
 
-Las siguientes fases previstas son:
+Una vez implementada y documentada la auditoría automatizada, las siguientes mejoras se centrarán en ampliar el proceso de revisión de accesos y preparar una posible remediación controlada.
 
-1. Convertir los comandos manuales en un script PowerShell reproducible.
-2. Añadir una clasificación de hallazgos por tipo y prioridad.
-3. Incorporar un registro de decisiones: mantener, retirar o investigar.
-4. Simular la remediación sin modificar los datos originales.
-5. Añadir controles para evitar que una remediación se aplique sin revisión.
-6. Crear pruebas de validación y documentar los resultados.
-7. Mejorar las evidencias para mostrar el proceso completo de principio a fin.
+1. **Registro de decisiones de revisión:** incorporar un registro que permita indicar si cada hallazgo debe mantenerse, retirarse o investigarse, incluyendo la justificación de la decisión.
+2. **Simulación de remediación:** generar una propuesta de cambios sobre las asignaciones detectadas, sin modificar los datos originales ni aplicar cambios reales en las cuentas.
+3. **Controles de aprobación:** establecer validaciones para impedir que una remediación simulada se considere autorizada sin una decisión previa.
+4. **Pruebas de validación:** crear casos de prueba para comprobar el comportamiento del script ante usuarios inexistentes, registros duplicados, cuentas inactivas y asignaciones no contempladas en la matriz de referencia.
+5. **Trazabilidad de las revisiones:** registrar las decisiones, los motivos y los resultados de cada ejecución para facilitar el seguimiento de los hallazgos.
+6. **Ampliación del laboratorio:** explorar una futura integración en un entorno aislado de pruebas con Active Directory o Microsoft Entra ID, manteniendo los controles necesarios para evitar modificaciones accidentales.
+
+Estas mejoras permitirían evolucionar desde una auditoría automatizada de carácter local hacia un flujo de revisión y remediación más estructurado, manteniendo la aprobación humana y la trazabilidad como elementos centrales del proceso.
