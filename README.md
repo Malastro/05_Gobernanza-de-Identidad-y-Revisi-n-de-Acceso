@@ -124,7 +124,7 @@ Enrique Pastor (`epastor`) tiene asignados `GRP-Direccion` y `GRP-AtencionVecino
 
 Por tanto, `GRP-AtencionVecino` se identifica como una discrepancia que debe revisarse.
 
-El proceso genera el informe `reports/accesos_no_esperados.cs`v
+El proceso genera el informe `reports/accesos_no_esperados.csv`
 
 ### Fase 4. Detección de cuentas inactivas con asignaciones
 
