@@ -143,6 +143,7 @@ Los informes generados son:
 - `accesos_no_esperados.csv`
 - `accesos_cuentas_inactivas.csv`
 - `resumen_auditoria.csv`
+- `informe_auditoria.md`
 
 ## 5. Automatización de la auditoría con PowerShell
 
