@@ -80,7 +80,7 @@ Esta matriz actúa como referencia para la auditoría. No concede ni retira perm
 
 La comparación entre esta referencia y las asignaciones actuales permite identificar discrepancias que requieren revisión.
 
-## 4. Metodología de auditoría
+## 4. Fases de implementación
 
 ### Fase 1. Importación de los datos
 
