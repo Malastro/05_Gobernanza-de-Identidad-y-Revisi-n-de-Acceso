@@ -37,6 +37,54 @@ foreach ($archivo in $archivosEntrada) {
     }
 }
 
+# ============================================================
+# Validar las columnas requeridas en los archivos CSV
+# ============================================================
+
+$esquemasEsperados = @{
+    "usuarios.csv" = @(
+        "UserId", "Nombre", "Departamento", "Estado"
+    )
+    "asignaciones.csv" = @(
+        "UserId", "Grupo"
+    )
+    "accesos_esperados.csv" = @(
+        "UserId", "GrupoEsperado"
+    )
+}
+
+foreach ($nombreArchivo in $esquemasEsperados.Keys) {
+
+    $rutaArchivo = Join-Path `
+        (Join-Path $rutaProyecto "data") `
+        $nombreArchivo
+
+    $registros = @(Import-Csv -LiteralPath $rutaArchivo)
+
+    # Comprobar que el archivo contiene registros
+    if ($registros.Count -eq 0) {
+        throw "El archivo '$nombreArchivo' está vacío o no contiene datos."
+    }
+
+    # Obtener los nombres de las columnas
+    $columnas = @(
+        $registros[0].PSObject.Properties.Name
+    )
+
+    # Identificar las columnas que faltan
+    $columnasFaltantes = @(
+        $esquemasEsperados[$nombreArchivo] |
+            Where-Object { $_ -notin $columnas }
+    )
+
+    # Detener el script si falta alguna columna obligatoria
+    if ($columnasFaltantes.Count -gt 0) {
+        throw "El archivo '$nombreArchivo' no contiene las columnas requeridas: $($columnasFaltantes -join ', ')."
+    }
+
+    Write-Host "Columnas validadas: $nombreArchivo"
+}
+
 # Crear la carpeta de informes si no existe
 if (-not (Test-Path -LiteralPath $rutaInformes -PathType Container)) {
     New-Item -ItemType Directory -Path $rutaInformes | Out-Null
