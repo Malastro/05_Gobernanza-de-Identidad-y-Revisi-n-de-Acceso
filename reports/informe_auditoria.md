@@ -4,7 +4,7 @@
 
 **Laboratorio:** Lab 05 - Identity Governance & Access Reviews
 
-**Fecha de generación:** 2026-10-28 09:14:32
+**Fecha de generación:** 2026-10-28 14:12:46
 
 ## 1. Resumen ejecutivo
 
