@@ -1,7 +1,7 @@
 # 05_Gobernanza de Identidad y Revisión de Acceso: Mirador de Montepinar S.L. · Operación «Control de Accesos»
 
 
-## 1. El escenario: en Montepinar nadie se fía de nadie
+## 1. Descripción del proyecto
 
 Tras desplegar la infraestructura de identidad híbrida, configurar MFA y automatizar el ciclo de vida de las identidades, la comunidad de Mirador de Montepinar SL se enfrenta a un nuevo problema: nadie parece tener claro quién debería conservar acceso a qué.
 
